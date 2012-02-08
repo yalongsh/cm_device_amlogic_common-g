@@ -1,0 +1,12 @@
+ABORT       '\nNO CARRIER\r'
+ABORT       '\nNO DIALTONE\r'
+ABORT       '\nERROR\r'
+ABORT       '\nNO ANSWER\r'
+ABORT       '\nBUSY\r'
+
+TIMEOUT     20
+
+''          \rAT 
+OK          ATDT#777
+CONNECT     ''
+

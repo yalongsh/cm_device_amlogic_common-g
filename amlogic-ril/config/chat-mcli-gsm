@@ -1,0 +1,11 @@
+ABORT       '\nBUSY\r' 
+ABORT       '\nNO ANSWER\r' 
+ABORT       '\nRINGING\r' 
+
+TIMEOUT     30 
+
+''          \rAT 
+OK          AT+CGDCONT=1,"IP","cmnet" 
+''          ATDT*99# 
+CONNECT     ''
+
