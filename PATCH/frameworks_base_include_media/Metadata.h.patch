@@ -1,0 +1,40 @@
+--- Metadata.h.original	2012-02-01 21:21:54.000000000 +0100
++++ Metadata.h.psquare	2012-02-03 07:46:02.000000000 +0100
+@@ -22,6 +22,8 @@
+ #include <utils/RefBase.h>
+ #include <utils/SortedVector.h>
+ 
++#include <utils/String8.h>
++
+ namespace android {
+ class Parcel;
+ 
+@@ -93,6 +95,18 @@
+     static const Type kSeekForwardAvailable = 31;  // Boolean
+     static const Type kSeekAvailable = 32;         // Boolean
+ 
++    // Amplayer extended types.
++    static const int kAmlTypeBase = 8192;  //extend first id.
++    static const Type kAudioTrackNum = kAmlTypeBase+1; //Integer,8193
++    static const Type kVideoTrackNum = kAmlTypeBase+2; //Integer,8194
++    static const Type kInnerSubtitleNum = kAmlTypeBase+3; //Interger,8195
++    static const Type kAudioCodecAllInfo = kAmlTypeBase+4; //String,8196
++    static const Type kVideoCodecAllInfo = kAmlTypeBase+5; //String,8197    
++    static const Type kInnerSubtitleAllInfo = kAmlTypeBase +6; //String,8198
++    static const Type kStreamType = kAmlTypeBase+7; //String,8199
++	static const Type kPlayerType = kAmlTypeBase+8; //int ,8200
++    
++
+     // @param p[inout] The parcel to append the metadata records
+     // to. The global metadata header should have been set already.
+     explicit Metadata(Parcel *p);
+@@ -116,6 +130,9 @@
+     bool appendBool(Type key, bool val);
+     bool appendInt32(Type key, int32_t val);
+ 
++
++    bool appendCString(Type key,const char* val);
++
+   private:
+     Metadata(const Metadata&);
+     Metadata& operator=(const Metadata&);

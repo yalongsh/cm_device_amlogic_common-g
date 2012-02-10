@@ -1,0 +1,11 @@
+--- alsactl.c.original	2012-02-01 21:20:31.000000000 +0100
++++ alsactl.c.psquare	2012-02-01 22:35:25.000000000 +0100
+@@ -31,7 +31,7 @@
+ #include "alsactl.h"
+ 
+ #ifndef SYS_ASOUNDRC
+-#define SYS_ASOUNDRC "/var/lib/alsa/asound.state"
++#define SYS_ASOUNDRC "/etc/asound.state"
+ #endif
+ 
+ int debugflag = 0;

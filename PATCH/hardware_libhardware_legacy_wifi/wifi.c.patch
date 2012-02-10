@@ -1,0 +1,56 @@
+--- wifi.c.original	2012-02-01 21:22:03.000000000 +0100
++++ wifi.c.psquare	2012-01-19 10:27:31.000000000 +0100
+@@ -214,7 +214,18 @@
+     unsigned int size;
+     int ret;
+ 
+-    /* Use rfkill if "module" is 'rfkill' */
++    return 0;
++}
++
++/*
++
++static int insmod(const char *filename, const char *args)
++{
++    void *module;
++    unsigned int size;
++    int ret;
++
++    // Use rfkill if "module" is 'rfkill' //
+     if (!strncmp(DRIVER_MODULE_PATH, "rfkill", 6)) {
+         return set_wifi_power(1);
+     }
+@@ -229,13 +240,24 @@
+ 
+     return ret;
+ }
++*/
++
++static int rmmod(const char *modname)
++{
++    int ret = -1;
++    int maxtry = 10;
++
++    return 0;
++}
++
++/*
+ 
+ static int rmmod(const char *modname)
+ {
+     int ret = -1;
+     int maxtry = 10;
+ 
+-    /* Use rfkill if "module" is 'rfkill' */
++    // Use rfkill if "module" is 'rfkill' //
+     if (!strncmp(DRIVER_MODULE_PATH, "rfkill", 6)) {
+         return set_wifi_power(0);
+     }
+@@ -253,6 +275,7 @@
+              modname, strerror(errno));
+     return ret;
+ }
++*/
+ 
+ int do_dhcp_request(int *ipaddr, int *gateway, int *mask,
+                     int *dns1, int *dns2, int *server, int *lease) {

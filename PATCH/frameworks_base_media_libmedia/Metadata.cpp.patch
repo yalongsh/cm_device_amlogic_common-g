@@ -1,0 +1,39 @@
+--- Metadata.cpp.original	2012-02-01 21:21:55.000000000 +0100
++++ Metadata.cpp.psquare	2012-02-03 07:48:08.000000000 +0100
+@@ -24,6 +24,8 @@
+ #include <utils/Errors.h>
+ #include <utils/RefBase.h>
+ 
++#define PAD_SIZE(s) (((s)+3)&~3)
++
+ // This file contains code to serialize Metadata triples (key, type,
+ // value) into a parcel. The Parcel is destinated to be decoded by the
+ // Metadata.java class.
+@@ -129,6 +131,27 @@
+     return ok;
+ }
+ 
++bool Metadata::appendCString(int key, const char* val)
++{
++    if (!checkKey(key)) {
++        return false;
++    }    
++    const size_t begin = mData->dataPosition();
++    bool ok = true; 
++    const size_t padded = PAD_SIZE((String16(val).size()+1)*sizeof(char16_t)+sizeof(int32_t));
++
++    ok = ok && mData->writeInt32(3* sizeof(int32_t)+padded) == OK;
++    ok = ok && mData->writeInt32(key) == OK;
++    ok = ok && mData->writeInt32(STRING_VAL) == OK;
++	
++    ok = ok && mData->writeString16(String16(val)) == OK;
++    if (!ok) {
++        mData->setDataPosition(begin);
++    }
++
++    return ok;
++}
++
+ // Check the key (i.e metadata id) is valid if it is a system one.
+ // Loop over all the exiting ones in the Parcel to check for duplicate
+ // (not allowed).

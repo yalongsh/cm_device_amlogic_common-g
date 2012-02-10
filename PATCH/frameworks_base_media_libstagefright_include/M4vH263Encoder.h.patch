@@ -1,0 +1,14 @@
+--- M4vH263Encoder.h.original	2012-02-01 21:21:56.000000000 +0100
++++ M4vH263Encoder.h.psquare	2012-02-02 09:41:03.000000000 +0100
+@@ -63,6 +63,11 @@
+     status_t mInitCheck;
+     bool     mStarted;
+ 
++#ifdef AML_VIDEOENCODER_ROTATE
++    int32_t  mVideoRotation;
++    int32_t  mVideoRotateEnable;
++#endif
++
+     tagvideoEncControls   *mHandle;
+     tagvideoEncOptions    *mEncParams;
+     MediaBuffer           *mInputBuffer;

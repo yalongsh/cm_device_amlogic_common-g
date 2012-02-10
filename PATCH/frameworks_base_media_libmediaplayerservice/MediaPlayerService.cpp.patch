@@ -1,0 +1,115 @@
+--- MediaPlayerService.cpp.original	2012-02-09 22:22:06.000000000 +0100
++++ MediaPlayerService.cpp.psquare	2012-02-09 16:14:15.000000000 +0100
+@@ -71,6 +71,10 @@
+ #include <hardware_legacy/MediaPlayerHardwareInterface.h>
+ #endif
+ 
++#ifdef BUILD_WITH_AMLOGIC_PLAYER
++#include "AmlogicPlayer.h"
++#endif
++#include "AmSuperPlayer.h"
+ 
+ /* desktop Linux needs a little help with gettid() */
+ #if defined(HAVE_GETTID) && !defined(HAVE_ANDROID_OS)
+@@ -706,10 +710,34 @@
+     IPCThreadState::self()->flushCommands();
+ }
+ 
++static  bool check_prop_enable(const char* str)
++{
++	char value[PROPERTY_VALUE_MAX];
++	if(property_get(str, value, NULL)>0)
++	{
++		
++		if ((!strcmp(value, "1") || !strcmp(value, "true")))
++		{
++			LOGV("%s is enabled\n",str);
++			return true;
++		}
++	}
++	LOGV("%s is disabled\n",str);
++	return false;
++}
++
++static player_type getOldDefaultPlayerType() {
++    return STAGEFRIGHT_PLAYER;
++}
++
+ static player_type getDefaultPlayerType() {
+ #ifdef USE_BOARD_MEDIAPLUGIN
+     return BOARD_HW_PLAYER;
+ #endif
++#ifdef BUILD_WITH_AMLOGIC_PLAYER
++	if (check_prop_enable("media.amsuperplayer.enable"))
++		return AMSUPER_PLAYER;
++#endif
+     return STAGEFRIGHT_PLAYER;
+ }
+ 
+@@ -798,6 +826,7 @@
+ static sp<MediaPlayerBase> createPlayer(player_type playerType, void* cookie,
+         notify_callback_f notifyFunc)
+ {
++	LOGV("sp<MediaPlayerBase> createPlayer");
+     sp<MediaPlayerBase> p;
+     switch (playerType) {
+ #ifndef NO_OPENCORE
+@@ -814,6 +843,22 @@
+             LOGV(" create StagefrightPlayer");
+             p = new StagefrightPlayer;
+             break;
++		case AMSUPER_PLAYER:
++			#ifdef BUILD_WITH_AMLOGIC_PLAYER
++				LOGV("Create AmSuperPlayer ");
++				p = new AmSuperPlayer();
++			#else
++				LOGV("Have not Buildin  Amlogic Player Support");
++			#endif
++			break;
++		case AMLOGIC_PLAYER:
++			#ifdef BUILD_WITH_AMLOGIC_PLAYER
++				LOGV("Create Amlogic Player");
++				p = new AmlogicPlayer();
++			#else
++				LOGV("Have not Buildin Amlogic Player Support");
++			#endif
++			break;
+         case TEST_PLAYER:
+             LOGV("Create Test Player stub");
+             p = new TestPlayerStub();
+@@ -885,7 +930,7 @@
+         sp<MediaPlayerBase> p = createPlayer(playerType);
+         if (p == NULL) return NO_INIT;
+ 
+-        if (!p->hardwareOutput()) {
++        if (!p->hardwareOutput() || playerType==AMSUPER_PLAYER) {
+             mAudioOutput = new AudioOutput(mAudioSessionId);
+             static_cast<MediaPlayerInterface*>(p.get())->setAudioSink(mAudioOutput);
+         }
+@@ -935,7 +980,7 @@
+     sp<MediaPlayerBase> p = createPlayer(playerType);
+     if (p == NULL) return NO_INIT;
+ 
+-    if (!p->hardwareOutput()) {
++    if (!p->hardwareOutput()|| playerType==AMSUPER_PLAYER) {
+         mAudioOutput = new AudioOutput(mAudioSessionId);
+         static_cast<MediaPlayerInterface*>(p.get())->setAudioSink(mAudioOutput);
+     }
+@@ -1277,6 +1322,8 @@
+     }
+ 
+     player_type playerType = getPlayerType(url);
++    if(playerType==AMLOGIC_PLAYER || playerType==AMSUPER_PLAYER)
++    	playerType=getOldDefaultPlayerType();
+     LOGV("player type = %d", playerType);
+ 
+     // create the right type of player
+@@ -1320,6 +1367,8 @@
+     sp<MediaPlayerBase> player;
+ 
+     player_type playerType = getPlayerType(fd, offset, length);
++    if(playerType==AMLOGIC_PLAYER || playerType==AMSUPER_PLAYER)
++    	playerType=getOldDefaultPlayerType();
+     LOGV("player type = %d", playerType);
+ 
+     // create the right type of player

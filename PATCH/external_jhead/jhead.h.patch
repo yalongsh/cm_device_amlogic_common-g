@@ -1,0 +1,10 @@
+--- jhead.h.original	2012-02-04 07:55:38.000000000 +0100
++++ jhead.h.psquare	2011-10-03 12:48:41.000000000 +0200
+@@ -176,6 +176,7 @@
+ unsigned Get32u(void * Long);
+ int Get32s(void * Long);
+ void Put32u(void * Value, unsigned PutValue);
++unsigned char* getExifBuf(char** attrlist, int attrCount, int* exifLen,int thumbnailLen,char* thumbnaildata);
+ void create_EXIF(ExifElement_t* elements, int exifTagCount, int gpsTagCount);
+ int TagNameToValue(const char* tagName);
+ 

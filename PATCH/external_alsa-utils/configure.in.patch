@@ -1,0 +1,11 @@
+--- configure.in.original	2012-02-01 21:20:31.000000000 +0100
++++ configure.in.psquare	2012-02-01 22:44:39.000000000 +0100
+@@ -296,7 +296,7 @@
+ AC_ARG_WITH([asound-state-dir],
+         AS_HELP_STRING([--with-asound-state-dir=DIR], [Directory to place asound.state file in]),
+         [ASOUND_STATE_DIR="$withval"],
+-        [ASOUND_STATE_DIR="/var/lib/alsa"])
++        [ASOUND_STATE_DIR="/etc"])
+ AC_SUBST(ASOUND_STATE_DIR)
+ 
+ AC_OUTPUT(Makefile alsactl/Makefile alsactl/init/Makefile \

@@ -1,0 +1,26 @@
+--- AudioTrack.cpp.original	2012-02-09 22:22:06.000000000 +0100
++++ AudioTrack.cpp.psquare	2012-02-09 15:27:37.000000000 +0100
+@@ -289,6 +289,23 @@
+ 
+ uint32_t AudioTrack::latency() const
+ {
++    if (AudioSystem::isOutputChannel(mChannels)) {
++        uint32_t latency = 1000;
++
++        if (AudioSystem::getOutputLatency(&latency, mStreamType) == NO_ERROR) {
++            LOGV("latency = %d", latency);
++            if (mCblk) {
++                int frames = mCblk->framesReady();
++
++                LOGV("mCblk->framesReady = %d", frames);
++                latency += frames * 1000 / mCblk->sampleRate;
++            }
++
++            return latency;
++        }
++            LOGV("latency getOutputLatency error");
++    }
++
+     return mLatency;
+ }
+ 

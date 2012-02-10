@@ -1,0 +1,12 @@
+--- Camera.h.original	2012-02-09 22:22:06.000000000 +0100
++++ Camera.h.psquare	2012-02-10 00:57:10.445268102 +0100
+@@ -129,7 +129,8 @@
+ 
+ enum {
+     CAMERA_FACING_BACK = 0, /* The facing of the camera is opposite to that of the screen. */
+-    CAMERA_FACING_FRONT = 1 /* The facing of the camera is the same as that of the screen. */
++    CAMERA_FACING_FRONT = 1, /* The facing of the camera is the same as that of the screen. */
++    CAMERA_USB = CAMERA_FACING_BACK,
+ };
+ 
+ struct CameraInfo {

@@ -1,0 +1,11 @@
+--- MediaPlayerInterface.h.original	2012-02-01 21:21:54.000000000 +0100
++++ MediaPlayerInterface.h.psquare	2012-02-03 07:43:55.000000000 +0100
+@@ -46,6 +46,8 @@
+     TEST_PLAYER = 5,
+     FLAC_PLAYER = 6,
+     BOARD_HW_PLAYER = 7,
++    AMLOGIC_PLAYER=8,
++    AMSUPER_PLAYER=9,
+ };
+ 
+ 

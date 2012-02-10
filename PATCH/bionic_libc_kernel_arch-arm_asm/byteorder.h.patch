@@ -1,0 +1,11 @@
+--- byteorder.h.original	2012-02-01 21:19:37.000000000 +0100
++++ byteorder.h.psquare	2012-02-02 20:47:15.000000000 +0100
+@@ -22,7 +22,7 @@
+ #ifndef __thumb__
+  if (!__builtin_constant_p(x)) {
+ 
+- asm ("eor\t%0, %1, %1, ror #16" : "=r" (t) : "r" (x));
++ __asm__ ("eor\t%0, %1, %1, ror #16" : "=r" (t) : "r" (x));
+  } else
+ #endif
+  t = x ^ ((x << 16) | (x >> 16));

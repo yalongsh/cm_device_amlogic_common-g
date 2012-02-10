@@ -1,0 +1,11 @@
+--- SampleTable.h.original	2012-02-01 21:21:56.000000000 +0100
++++ SampleTable.h.psquare	2012-02-02 09:45:52.000000000 +0100
+@@ -58,6 +58,8 @@
+ 
+     uint32_t countSamples() const;
+ 
++    uint32_t countSyncSamples() const;
++
+     status_t getMaxSampleSize(size_t *size);
+ 
+     status_t getMetaDataForSample(

@@ -1,0 +1,31 @@
+--- MediaProfiles.cpp.original	2012-02-09 22:22:06.000000000 +0100
++++ MediaProfiles.cpp.psquare	2012-02-09 15:31:20.000000000 +0100
+@@ -360,7 +360,8 @@
+     } else if (strcmp("EncoderOutputFileFormat", name) == 0) {
+         profiles->mEncoderOutputFileFormats.add(createEncoderOutputFileFormat(atts));
+     } else if (strcmp("CamcorderProfiles", name) == 0) {
+-        profiles->mCurrentCameraId = getCameraId(atts);
++        //profiles->mCurrentCameraId = getCameraId(atts);
++        profiles->mCurrentCameraId = 0 ;
+     } else if (strcmp("EncoderProfile", name) == 0) {
+         profiles->mCamcorderProfiles.add(
+             createCamcorderProfile(profiles->mCurrentCameraId, atts));
+@@ -683,11 +684,18 @@
+ 
+     int index = -1;
+     for (size_t i = 0, n = mCamcorderProfiles.size(); i < n; ++i) {
++#if 0    	
+         if (mCamcorderProfiles[i]->mCameraId == cameraId &&
+             mCamcorderProfiles[i]->mQuality == quality) {
+             index = i;
+             break;
+         }
++#else
++        if (mCamcorderProfiles[i]->mQuality == quality) {
++            index = i;
++            break;
++        }
++#endif        
+     }
+     if (index == -1) {
+         LOGE("The given camcorder profile camera %d quality %d is not found",

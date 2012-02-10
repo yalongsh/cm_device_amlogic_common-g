@@ -1,0 +1,31 @@
+--- ATSParser.cpp.original	2012-02-01 21:21:56.000000000 +0100
++++ ATSParser.cpp.psquare	2012-02-02 09:51:26.000000000 +0100
+@@ -300,7 +300,15 @@
+     size_t payloadSizeBits = br->numBitsLeft();
+     CHECK((payloadSizeBits % 8) == 0);
+ 
+-    CHECK_LE(mBuffer->size() + payloadSizeBits / 8, mBuffer->capacity());
++    size_t neededSize = mBuffer->size() + payloadSizeBits / 8;
++    if(mBuffer->capacity() < neededSize) {
++        neededSize = (neededSize + 65535) & ~65535;
++
++        sp<ABuffer> newBuffer = new ABuffer(neededSize);
++        memcpy(newBuffer->data(), mBuffer->data(), mBuffer->size());
++        newBuffer->setRange(0, mBuffer->size());
++        mBuffer = newBuffer;
++    }
+ 
+     memcpy(mBuffer->data() + mBuffer->size(), br->data(), payloadSizeBits / 8);
+     mBuffer->setRange(0, mBuffer->size() + payloadSizeBits / 8);
+@@ -499,7 +507,10 @@
+         const uint8_t *data, size_t size) {
+     LOGV("onPayloadData mStreamType=0x%02x", mStreamType);
+ 
+-    CHECK(PTS_DTS_flags == 2 || PTS_DTS_flags == 3);
++    if (mStreamType != 0x1b && mStreamType != 0x0f)
++        return;
++	
++    //CHECK(PTS_DTS_flags == 2 || PTS_DTS_flags == 3);
+     int64_t timeUs = mProgram->convertPTSToTimestamp(PTS);
+ 
+     status_t err = mQueue.appendData(data, size, timeUs);

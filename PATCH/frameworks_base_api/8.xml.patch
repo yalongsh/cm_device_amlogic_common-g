@@ -1,0 +1,60 @@
+--- 8.xml.original	2012-02-01 21:21:42.000000000 +0100
++++ 8.xml.psquare	2012-02-02 12:22:42.000000000 +0100
+@@ -38539,6 +38539,17 @@
+  visibility="public"
+ >
+ </field>
++<field name="ACTION_TVOUT_EVENT"
++ type="java.lang.String"
++ transient="false"
++ volatile="false"
++ value="&quot;android.intent.action.TVOUT_EVENT&quot;"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</field>
+ <field name="ACTION_UID_REMOVED"
+  type="java.lang.String"
+  transient="false"
+@@ -39173,6 +39184,39 @@
+  static="true"
+  final="true"
+  deprecated="not deprecated"
++ visibility="public"
++>
++</field>
++<field name="EXTRA_TVOUT_STATE"
++ type="java.lang.String"
++ transient="false"
++ volatile="false"
++ value="&quot;android.intent.extra.TVOUT_STATE&quot;"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</field>
++<field name="EXTRA_TVOUT_STATE_OFF"
++ type="int"
++ transient="false"
++ volatile="false"
++ value="0"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</field>
++<field name="EXTRA_TVOUT_STATE_ON"
++ type="int"
++ transient="false"
++ volatile="false"
++ value="1"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
+  visibility="public"
+ >
+ </field>
