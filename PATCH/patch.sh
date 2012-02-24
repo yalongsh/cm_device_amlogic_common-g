@@ -30,19 +30,19 @@ cp $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h $ROOTDIR/bionic/libc/ker
 cp $PATCHDIR/bionic_libc_kernel_arch-arm_asm/byteorder.h.patch $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h.patch
 patch -N $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h < $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h.patch
 
-cp $ROOTDIR/external/alsa-utils/configure $ROOTDIR/external/alsa-utils/configure.original
-cp $ROOTDIR/external/alsa-utils/configure.in $ROOTDIR/external/alsa-utils/configure.in.original
-cp $PATCHDIR/external_alsa-utils/configure.patch $ROOTDIR/external/alsa-utils/configure.patch
-cp $PATCHDIR/external_alsa-utils/configure.in.patch $ROOTDIR/external/alsa-utils/configure.in.patch
-patch -N $ROOTDIR/external/alsa-utils/configure < $ROOTDIR/external/alsa-utils/configure.patch
-patch -N $ROOTDIR/external/alsa-utils/configure.in < $ROOTDIR/external/alsa-utils/configure.in.patch
+#cp $ROOTDIR/external/alsa-utils/configure $ROOTDIR/external/alsa-utils/configure.original
+#cp $PATCHDIR/external_alsa-utils/configure.patch $ROOTDIR/external/alsa-utils/configure.patch
+#patch -N $ROOTDIR/external/alsa-utils/configure < $ROOTDIR/external/alsa-utils/configure.patch
+#cp $ROOTDIR/external/alsa-utils/configure.in $ROOTDIR/external/alsa-utils/configure.in.original
+#cp $PATCHDIR/external_alsa-utils/configure.in.patch $ROOTDIR/external/alsa-utils/configure.in.patch
+#patch -N $ROOTDIR/external/alsa-utils/configure.in < $ROOTDIR/external/alsa-utils/configure.in.patch
 
-cp $ROOTDIR/external/alsa-utils/alsactl/alsactl.1 $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.original
-cp $ROOTDIR/external/alsa-utils/alsactl/alsactl.c $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.original
-cp $PATCHDIR/external_alsa-utils_alsactl/alsactl.1.patch $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.patch
-cp $PATCHDIR/external_alsa-utils_alsactl/alsactl.c.patch $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.patch
-patch -N $ROOTDIR/external/alsa-utils/alsactl/alsactl.1 < $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.patch
-patch -N $ROOTDIR/external/alsa-utils/alsactl/alsactl.c < $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.patch
+#cp $ROOTDIR/external/alsa-utils/alsactl/alsactl.1 $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.original
+#cp $PATCHDIR/external_alsa-utils_alsactl/alsactl.1.patch $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.patch
+#patch -N $ROOTDIR/external/alsa-utils/alsactl/alsactl.1 < $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.patch
+#cp $ROOTDIR/external/alsa-utils/alsactl/alsactl.c $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.original
+#cp $PATCHDIR/external_alsa-utils_alsactl/alsactl.c.patch $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.patch
+#patch -N $ROOTDIR/external/alsa-utils/alsactl/alsactl.c < $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.patch
 
 cp $ROOTDIR/external/jhead/exif.c $ROOTDIR/external/jhead/exif.c.original
 cp $ROOTDIR/external/jhead/jhead.h $ROOTDIR/external/jhead/jhead.h.original
@@ -103,47 +103,44 @@ patch -N $ROOTDIR/hardware/libhardware_legacy/wifi/wifi.c < $ROOTDIR/hardware/li
 
 cp $PATCHDIR/+frameworks_base_media_libmediaplayerservice/* $ROOTDIR/frameworks/base/media/libmediaplayerservice
 
+#1
+#####
+#2
 
+cp $ROOTDIR/frameworks/base/include/camera/Camera.h $ROOTDIR/frameworks/base/include/camera/Camera.h.original
+cp $PATCHDIR/frameworks_base_include_camera/Camera.h.patch $ROOTDIR/frameworks/base/include/camera/Camera.h.patch
+patch -N $ROOTDIR/frameworks/base/include/camera/Camera.h < $ROOTDIR/frameworks/base/include/camera/Camera.h.patch
 
-
-
-#cp $ROOTDIR/frameworks/base/include/camera/Camera.h $ROOTDIR/frameworks/base/include/camera/Camera.h.original
-#cp $PATCHDIR/frameworks_base_include_camera/Camera.h.patch $ROOTDIR/frameworks/base/include/camera/Camera.h.patch
-#patch -N $ROOTDIR/frameworks/base/include/camera/Camera.h < $ROOTDIR/frameworks/base/include/camera/Camera.h.patch
-
-#cp $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp.original
+#?#cp $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp.original
 #cp $PATCHDIR/frameworks_base_media_libmedia/AudioTrack.cpp.patch $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp.patch
 #patch -N $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp < $ROOTDIR/frameworks/base/media/libmedia/AudioTrack.cpp.patch
-#cp $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp.original
-#cp $PATCHDIR/frameworks_base_media_libmedia/MediaProfiles.cpp.patch $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp.patch
-#patch -N $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp < $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp.patch
+cp $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp.original
+cp $PATCHDIR/frameworks_base_media_libmedia/MediaProfiles.cpp.patch $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp.patch
+patch -N $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp < $ROOTDIR/frameworks/base/media/libmedia/MediaProfiles.cpp.patch
 
-#cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk.original
-#cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc/Android.mk.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk.patch
-#patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk.patch
-#cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp.original
-#cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc/M4vH263Encoder.cpp.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp.patch
-#patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp.patch
+#EDIT#
+cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk.original
+cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc/Android.mk.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk.patch
+patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/Android.mk.patch
+cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp.original
+cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc/M4vH263Encoder.cpp.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp.patch
+patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/M4vH263Encoder.cpp.patch
 
-#cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h.original
-#cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc_include/mp4enc_api.h.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h.patch
-#patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h.patch
+cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h.original
+cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc_include/mp4enc_api.h.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h.patch
+patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/include/mp4enc_api.h.patch
 
-#cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h.original
-#cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc_src/mp4def.h.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h.patch
-#patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h.patch
+cp $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h.original
+cp $PATCHDIR/frameworks_base_media_libstagefright_codecs_m4v_h263_enc_src/mp4def.h.patch $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h.patch
+patch -N $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h < $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src/mp4def.h.patch
 
-#cp $ROOTDIR/frameworks/base/media/mediaserver/Android.mk $ROOTDIR/frameworks/base/media/mediaserver/Android.mk.original
-#cp $PATCHDIR/frameworks_base_media_mediaserver/Android.mk.patch $ROOTDIR/frameworks/base/media/mediaserver/Android.mk.patch
-#patch -N $ROOTDIR/frameworks/base/media/mediaserver/Android.mk < $ROOTDIR/frameworks/base/media/mediaserver/Android.mk.patch
-
-#cp $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp.original
-#cp $PATCHDIR/frameworks_base_services_camera_libcameraservice/CameraService.cpp.patch $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp.patch
-#patch -N $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp < $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp.patch
+cp $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp.original
+cp $PATCHDIR/frameworks_base_services_camera_libcameraservice/CameraService.cpp.patch $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp.patch
+patch -N $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp < $ROOTDIR/frameworks/base/services/camera/libcameraservice/CameraService.cpp.patch
 
 
-#cp $PATCHDIR/+frameworks_base_media_libstagefright_codecs_m4v_h263_enc/* $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc
-#cp $PATCHDIR/+frameworks_base_media_libstagefright_codecs_m4v_h263_enc_src/* $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src
+cp $PATCHDIR/+frameworks_base_media_libstagefright_codecs_m4v_h263_enc/* $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc
+cp $PATCHDIR/+frameworks_base_media_libstagefright_codecs_m4v_h263_enc_src/* $ROOTDIR/frameworks/base/media/libstagefright/codecs/m4v_h263/enc/src
 
 
 
