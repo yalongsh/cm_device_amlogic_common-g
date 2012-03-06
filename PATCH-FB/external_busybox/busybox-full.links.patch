@@ -1,0 +1,10 @@
+--- busybox-full.links.original	2012-02-24 02:22:14.000000000 +0100
++++ busybox-full.links.psquare	2012-03-05 23:19:46.000000000 +0100
+@@ -46,6 +46,7 @@
+ /bin/expand
+ /bin/expr
+ /bin/false
++/sbin/fbset
+ /sbin/fdisk
+ /bin/fgrep
+ /bin/find

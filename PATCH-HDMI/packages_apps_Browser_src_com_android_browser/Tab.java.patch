@@ -1,0 +1,11 @@
+--- Tab.java.original	2012-02-23 18:58:07.000000000 +0100
++++ Tab.java.psquare	2012-02-29 03:53:52.000000000 +0100
+@@ -823,6 +823,8 @@
+                 // only check shortcut key when MENU is held
+                 return mActivity.getWindow().isShortcutKey(event.getKeyCode(),
+                         event);
++            } else if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
++                return true;
+             } else {
+                 return false;
+             }

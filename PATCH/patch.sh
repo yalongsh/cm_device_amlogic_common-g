@@ -30,20 +30,6 @@ cp $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h $ROOTDIR/bionic/libc/ker
 cp $PATCHDIR/bionic_libc_kernel_arch-arm_asm/byteorder.h.patch $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h.patch
 patch -N $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h < $ROOTDIR/bionic/libc/kernel/arch-arm/asm/byteorder.h.patch
 
-#cp $ROOTDIR/external/alsa-utils/configure $ROOTDIR/external/alsa-utils/configure.original
-#cp $PATCHDIR/external_alsa-utils/configure.patch $ROOTDIR/external/alsa-utils/configure.patch
-#patch -N $ROOTDIR/external/alsa-utils/configure < $ROOTDIR/external/alsa-utils/configure.patch
-#cp $ROOTDIR/external/alsa-utils/configure.in $ROOTDIR/external/alsa-utils/configure.in.original
-#cp $PATCHDIR/external_alsa-utils/configure.in.patch $ROOTDIR/external/alsa-utils/configure.in.patch
-#patch -N $ROOTDIR/external/alsa-utils/configure.in < $ROOTDIR/external/alsa-utils/configure.in.patch
-
-#cp $ROOTDIR/external/alsa-utils/alsactl/alsactl.1 $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.original
-#cp $PATCHDIR/external_alsa-utils_alsactl/alsactl.1.patch $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.patch
-#patch -N $ROOTDIR/external/alsa-utils/alsactl/alsactl.1 < $ROOTDIR/external/alsa-utils/alsactl/alsactl.1.patch
-#cp $ROOTDIR/external/alsa-utils/alsactl/alsactl.c $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.original
-#cp $PATCHDIR/external_alsa-utils_alsactl/alsactl.c.patch $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.patch
-#patch -N $ROOTDIR/external/alsa-utils/alsactl/alsactl.c < $ROOTDIR/external/alsa-utils/alsactl/alsactl.c.patch
-
 cp $ROOTDIR/external/jhead/exif.c $ROOTDIR/external/jhead/exif.c.original
 cp $ROOTDIR/external/jhead/jhead.h $ROOTDIR/external/jhead/jhead.h.original
 cp $PATCHDIR/external_jhead/exif.c.patch $ROOTDIR/external/jhead/exif.c.patch
@@ -54,15 +40,16 @@ patch -N $ROOTDIR/external/jhead/jhead.h < $ROOTDIR/external/jhead/jhead.h.patch
 cp $ROOTDIR/frameworks/base/api/8.xml $ROOTDIR/frameworks/base/api/8.xml.original
 cp $ROOTDIR/frameworks/base/api/9.xml $ROOTDIR/frameworks/base/api/9.xml.original
 cp $ROOTDIR/frameworks/base/api/10.xml $ROOTDIR/frameworks/base/api/10.xml.original
-cp $ROOTDIR/frameworks/base/api/current.xml $ROOTDIR/frameworks/base/api/current.xml.original
 cp $PATCHDIR/frameworks_base_api/8.xml.patch $ROOTDIR/frameworks/base/api/8.xml.patch
 cp $PATCHDIR/frameworks_base_api/9.xml.patch $ROOTDIR/frameworks/base/api/9.xml.patch
 cp $PATCHDIR/frameworks_base_api/10.xml.patch $ROOTDIR/frameworks/base/api/10.xml.patch
-cp $PATCHDIR/frameworks_base_api/current.xml.patch $ROOTDIR/frameworks/base/api/current.xml.patch
 patch -N $ROOTDIR/frameworks/base/api/8.xml < $ROOTDIR/frameworks/base/api/8.xml.patch
 patch -N $ROOTDIR/frameworks/base/api/9.xml < $ROOTDIR/frameworks/base/api/9.xml.patch
 patch -N $ROOTDIR/frameworks/base/api/10.xml < $ROOTDIR/frameworks/base/api/10.xml.patch
-patch -N $ROOTDIR/frameworks/base/api/current.xml < $ROOTDIR/frameworks/base/api/current.xml.patch
+
+#cp $ROOTDIR/frameworks/base/api/current.xml $ROOTDIR/frameworks/base/api/current.xml.original
+#cp $PATCHDIR/frameworks_base_api/current.xml.patch $ROOTDIR/frameworks/base/api/current.xml.patch
+#patch -N $ROOTDIR/frameworks/base/api/current.xml < $ROOTDIR/frameworks/base/api/current.xml.patch
 
 cp $ROOTDIR/frameworks/base/include/media/MediaPlayerInterface.h $ROOTDIR/frameworks/base/include/media/MediaPlayerInterface.h.original
 cp $ROOTDIR/frameworks/base/include/media/Metadata.h $ROOTDIR/frameworks/base/include/media/Metadata.h.original

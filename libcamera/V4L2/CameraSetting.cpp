@@ -143,11 +143,11 @@ status_t	CameraSetting::SetParameters(CameraParameters& pParameters)
 }
 
 static char* sCameraMirrorMode[] = {
-#ifdef AMLOGIC_BACK_CAMERA_SUPPORT
-    "Disble",  // cam id 0
-#endif
 #ifdef AMLOGIC_FRONT_CAMERA_SUPPORT
     "Enable", // cam id 1
+#endif
+#ifdef AMLOGIC_BACK_CAMERA_SUPPORT
+    "Enable",  // cam id 0
 #endif
 #ifdef AMLOGIC_USB_CAMERA_SUPPORT
     "Disble",
@@ -187,24 +187,22 @@ CameraSetting* getCameraSetting()
 }
 
 static CameraInfo sCameraInfo[] = {
-#ifdef AMLOGIC_BACK_CAMERA_SUPPORT
-    {
-        CAMERA_FACING_BACK,
-//        90,  /* orientation */
-        0,  /* orientation */
-    },
-#endif
 #ifdef AMLOGIC_FRONT_CAMERA_SUPPORT
     {
         CAMERA_FACING_FRONT,
-//        270,  /* orientation */
-        0,  /* orientation */
+        270,  /* orientation */
+    },
+#endif
+#ifdef AMLOGIC_BACK_CAMERA_SUPPORT
+    {
+        CAMERA_FACING_BACK,
+        90,  /* orientation */
     },
 #endif
 #ifdef AMLOGIC_USB_CAMERA_SUPPORT
     {
         CAMERA_USB,
-        0,  /* orientation */
+        360,  /* orientation */
     },
 #endif
 };

@@ -34,7 +34,7 @@ import static android.view.WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER;
 import static android.view.WindowManager.LayoutParams.LAST_APPLICATION_WINDOW;
 import static android.view.WindowManager.LayoutParams.LAST_SUB_WINDOW;
 import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_PUSH_BUFFERS;
-import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_NO_BLEND;
+//import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_NO_BLEND;
 import static android.view.WindowManager.LayoutParams.TYPE_APPLICATION_STARTING;
 import static android.view.WindowManager.LayoutParams.TYPE_BASE_APPLICATION;
 import static android.view.WindowManager.LayoutParams.TYPE_INPUT_METHOD;
@@ -283,7 +283,7 @@ public class WindowManagerService extends IWindowManager.Stub
                     Intent.EXTRA_TVOUT_STATE_OFF) == Intent.EXTRA_TVOUT_STATE_ON);
 
 				Slog.i("WindowManagerService ", "TvOut Intent receiver, tvout status="+ mTVOutOn);
-				mInputManager.setTvOutStatus(mTVOutOn);
+//				mInputManager.setTvOutStatus(mTVOutOn);
 			}
         }
     };
@@ -6498,9 +6498,9 @@ public class WindowManagerService extends IWindowManager.Stub
                     flags |= Surface.PUSH_BUFFERS;
                 }
 
-                if (mAttrs.memoryType == MEMORY_TYPE_NO_BLEND) {
-                    flags |= Surface.NO_BLEND;
-                }
+//                if (mAttrs.memoryType == MEMORY_TYPE_NO_BLEND) {
+//                    flags |= Surface.NO_BLEND;
+//                }
 
                 if ((mAttrs.flags&WindowManager.LayoutParams.FLAG_SECURE) != 0) {
                     flags |= Surface.SECURE;

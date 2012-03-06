@@ -1,0 +1,90 @@
+--- com_android_server_InputManager.cpp.original	2012-02-23 18:57:45.000000000 +0100
++++ com_android_server_InputManager.cpp.psquare	2012-02-29 01:00:05.000000000 +0100
+@@ -38,6 +38,7 @@
+ #include "../../core/jni/android_view_MotionEvent.h"
+ #include "../../core/jni/android_view_InputChannel.h"
+ #include "com_android_server_PowerManagerService.h"
++#include <cutils/properties.h>
+ 
+ namespace android {
+ 
+@@ -60,6 +61,7 @@
+     jmethodID getInputDeviceCalibration;
+     jmethodID getExcludedDeviceNames;
+     jmethodID getMaxEventsPerSecond;
++//    jmethodID handleCursorMotion;
+ } gCallbacksClassInfo;
+ 
+ static struct {
+@@ -214,6 +216,7 @@
+     virtual void pokeUserActivity(nsecs_t eventTime, int32_t eventType);
+     virtual bool checkInjectEventsPermissionNonReentrant(
+             int32_t injectorPid, int32_t injectorUid);
++//    virtual void handleCursorMotion(int32_t x, int32_t y);
+ 
+ private:
+     class ApplicationToken : public InputApplicationHandle {
+@@ -317,10 +320,20 @@
+ void NativeInputManager::setDisplayOrientation(int32_t displayId, int32_t orientation) {
+     if (displayId == 0) {
+         AutoMutex _l(mDisplayLock);
++		char value[16];
++		if(property_get("hw.aipdisplay.flag",value,0)>1)
++		{
++		LOGE("setDisplayOrientation '%i', set 0.", orientation );
++
++			mDisplayOrientation=0;
++		}else
++		{
++			LOGE("setDisplayOrientation  set '%i',.", orientation );
+ 
+         mDisplayOrientation = orientation;
+     }
+ }
++}
+ 
+ status_t NativeInputManager::registerInputChannel(JNIEnv* env,
+         const sp<InputChannel>& inputChannel, jobject inputChannelObj, bool monitor) {
+@@ -993,6 +1006,11 @@
+     return result;
+ }
+ 
++//void NativeInputManager::handleCursorMotion(int32_t x, int32_t y) {
++//    JNIEnv* env = jniEnv();
++//    env->CallVoidMethod(mCallbacksObj, gCallbacksClassInfo.handleCursorMotion, x, y);
++//}
++
+ // ----------------------------------------------------------------------------
+ 
+ static sp<NativeInputManager> gNativeInputManager;
+@@ -1292,6 +1310,11 @@
+     env->SetIntField(configObj, gConfigurationClassInfo.navigation, config.navigation);
+ }
+ 
++static void android_server_InputManager_nativeSetTvOutStatus(JNIEnv* env,
++        jclass clazz, jboolean on) {
++    gNativeInputManager->getInputManager()->getReader()->setTvOutStatus(on);
++}
++
+ static jstring android_server_InputManager_nativeDump(JNIEnv* env, jclass clazz) {
+     if (checkInputManagerUnitialized(env)) {
+         return NULL;
+@@ -1340,6 +1363,8 @@
+             (void*) android_server_InputManager_nativeGetInputDeviceIds },
+     { "nativeGetInputConfiguration", "(Landroid/content/res/Configuration;)V",
+             (void*) android_server_InputManager_nativeGetInputConfiguration },
++    { "nativeSetTvOutStatus","(Z)V",
++    		(void*) android_server_InputManager_nativeSetTvOutStatus},
+     { "nativeDump", "()Ljava/lang/String;",
+             (void*) android_server_InputManager_nativeDump },
+ };
+@@ -1410,6 +1435,9 @@
+     GET_METHOD_ID(gCallbacksClassInfo.getMaxEventsPerSecond, gCallbacksClassInfo.clazz,
+             "getMaxEventsPerSecond", "()I");
+ 
++//    GET_METHOD_ID(gCallbacksClassInfo.handleCursorMotion, gCallbacksClassInfo.clazz,
++//            "handleCursorMotion", "(II)V");
++
+     // VirtualKeyDefinition
+ 
+     FIND_CLASS(gVirtualKeyDefinitionClassInfo.clazz,

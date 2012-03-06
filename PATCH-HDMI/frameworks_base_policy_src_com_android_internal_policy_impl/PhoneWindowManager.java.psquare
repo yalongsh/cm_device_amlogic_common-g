@@ -358,10 +358,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     Settings.Secure.INCALL_POWER_BUTTON_BEHAVIOR), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.ACCELEROMETER_ROTATION), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.FORCE_ROTATION), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.FORCE_ROTATION_DIRECTION), false, this);
+//            resolver.registerContentObserver(Settings.System.getUriFor(
+//                    Settings.System.FORCE_ROTATION), false, this);
+//            resolver.registerContentObserver(Settings.System.getUriFor(
+//                    Settings.System.FORCE_ROTATION_DIRECTION), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.SCREEN_OFF_TIMEOUT), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
@@ -767,16 +767,16 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 com.android.internal.R.integer.config_deskDockRotation);
         mAllowAllRotations = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_allowAllRotations);
-        mTvOutRotation = readRotation(
-                com.android.internal.R.integer.config_TvOutRotation);
+//        mTvOutRotation = readRotation(
+//                com.android.internal.R.integer.config_TvOutRotation);
         mCarDockEnablesAccelerometer = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_carDockEnablesAccelerometer);
         mDeskDockEnablesAccelerometer = mContext.getResources().getBoolean(
                 com.android.internal.R.bool.config_deskDockEnablesAccelerometer);
-        mTvOutEnablesAccelerometer = mContext.getResources().getBoolean(
-                com.android.internal.R.bool.config_TvOutEnablesAccelerometer);
-        mLandscapeAutoSelectClockwise = mContext.getResources().getBoolean(
-                com.android.internal.R.bool.config_landscape_auto_select_clockwise);
+//        mTvOutEnablesAccelerometer = mContext.getResources().getBoolean(
+//                com.android.internal.R.bool.config_TvOutEnablesAccelerometer);
+//        mLandscapeAutoSelectClockwise = mContext.getResources().getBoolean(
+//                com.android.internal.R.bool.config_landscape_auto_select_clockwise);
         mLidKeyboardAccessibility = mContext.getResources().getInteger(
                 com.android.internal.R.integer.config_lidKeyboardAccessibility);
         mLidNavigationAccessibility = mContext.getResources().getInteger(
@@ -842,17 +842,17 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 updateOrientationListenerLp();
             }
 
-            int forceRotationTo = Settings.System.getInt(resolver,
-                    Settings.System.FORCE_ROTATION_DIRECTION, 0);  
+//            int forceRotationTo = Settings.System.getInt(resolver,
+//                    Settings.System.FORCE_ROTATION_DIRECTION, 0);  
             
-            int forceRotation = Settings.System.getInt(resolver,
-                    Settings.System.FORCE_ROTATION, 0);
+//            int forceRotation = Settings.System.getInt(resolver,
+//                    Settings.System.FORCE_ROTATION, 0);
             
-            if (mForceRotation != forceRotation || mForceRotationTo != forceRotationTo ) {
-                mForceRotation = forceRotation;
-                mForceRotationTo = forceRotationTo;
-                updateOrientationListenerLp();
-            }
+//            if (mForceRotation != forceRotation || mForceRotationTo != forceRotationTo ) {
+//                mForceRotation = forceRotation;
+//                mForceRotationTo = forceRotationTo;
+//                updateOrientationListenerLp();
+//            }
             if (mSystemReady) {
                 int pointerLocation = Settings.System.getInt(resolver,
                         Settings.System.POINTER_LOCATION, 0);
@@ -1362,7 +1362,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
          	  	Intent stoptv=new Intent(TV_MENU_STOP);
          	    mContext.sendBroadcast(stoptv);
          	  }
-            if(SystemProperties.getBoolean("dev.tv.globalsetup_show_status", false)||(keyCode == KeyEvent.KEYCODE_TV_SYSTEM)||(keyCode == KeyEvent.KEYCODE_MEDIA_SUB_T)||(keyCode == KeyEvent.KEYCODE_VOLUME_UP)||(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) {
+            if(SystemProperties.getBoolean("dev.tv.globalsetup_show_status", false)||(keyCode == KeyEvent.KEYCODE_VOLUME_UP)||(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)) { //||(keyCode == KeyEvent.KEYCODE_TV_SYSTEM)||(keyCode == KeyEvent.KEYCODE_MEDIA_SUB_T)
                 if(down) {
                     Intent intent1=new Intent(KEY_DOWN_HAPPEN);
                     intent1.putExtra("keyNum",keyCode);
@@ -1434,8 +1434,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (attrs != null) {
                 final int type = attrs.type;
                 if (type == WindowManager.LayoutParams.TYPE_KEYGUARD
-                        || type == WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG
-                        || type == WindowManager.LayoutParams.TYPE_APPLICATION_KEYGUARD) {
+                        || type == WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG) { //|| type == WindowManager.LayoutParams.TYPE_APPLICATION_KEYGUARD)
                     // the "app" is keyguard, so give it the key
                     return false;
                 }

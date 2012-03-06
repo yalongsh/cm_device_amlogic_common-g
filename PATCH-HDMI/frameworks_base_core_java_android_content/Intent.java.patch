@@ -1,0 +1,72 @@
+--- Intent.java.original	2012-02-23 18:57:32.000000000 +0100
++++ Intent.java.psquare	2012-02-28 01:37:27.000000000 +0100
+@@ -1176,6 +1176,21 @@
+     @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
+     public static final String ACTION_USER_PRESENT = "android.intent.action.USER_PRESENT";
+ 
++
++	/**
++     * Broadcast Action: The Auto-Rotation was set.
++     */
++    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
++	
++    public static final String ACTION_ROTATE_CHANGED = "android.intent.action.ROTATION_SET";
++
++	/**
++     * Broadcast Action: The brightness has changed .
++     */
++    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
++	
++    public static final String ACTION_BRIGHTNESS_CHANGED = "android.intent.action.BRIGHTNESS_CHANGED";
++
+     /**
+      * Broadcast Action: The current time has changed.  Sent every
+      * minute.  You can <em>not</em> receive this through components declared
+@@ -1879,6 +1894,20 @@
+             "android.intent.action.DOCK_EVENT";
+ 
+     /**
++     * Broadcast Action:  A sticky broadcast for changes in the tv out state of the device.
++     *
++     * <p>The intent will have the following extra values:
++     * <ul>
++     *   <li><em>{@link #EXTRA_TVOUT_STATE}</em> - the current tv out
++     *       state, indicating if tv out or not.</li>
++     * </ul>
++     * <p>This is intended for monitoring the current tv out state.
++     */
++    @SdkConstant(SdkConstantType.BROADCAST_INTENT_ACTION)
++    public static final String ACTION_TVOUT_EVENT =
++            "android.intent.action.TVOUT_EVENT";
++
++    /**
+      * Broadcast Action: a remote intent is to be broadcasted.
+      *
+      * A remote intent is used for remote RPC between devices. The remote intent
+@@ -2251,6 +2280,26 @@
+     public static final String METADATA_DOCK_HOME = "android.dock_home";
+ 
+     /**
++     * Used as an int extra field in {@link android.content.Intent#ACTION_TVOUT_EVENT}
++     * intents to request the tv out state.  Possible values are
++     * {@link android.content.Intent#EXTRA_TVOUT_STATE_ON},
++     * {@link android.content.Intent#EXTRA_TVOUT_STATE_OFF}, or
++     */
++    public static final String EXTRA_TVOUT_STATE = "android.intent.extra.TVOUT_STATE";
++
++    /**
++     * Used as an int value for {@link android.content.Intent#EXTRA_TVOUT_STATE}
++     * to represent that the mid tv out cable plug out.
++     */
++    public static final int EXTRA_TVOUT_STATE_OFF = 0;
++
++   /**
++     * Used as an int value for {@link android.content.Intent#EXTRA_TVOUT_STATE}
++     * to represent that the mid tv out cable plug in.
++     */
++    public static final int EXTRA_TVOUT_STATE_ON = 1;
++
++    /**
+      * Used as a parcelable extra field in {@link #ACTION_APP_ERROR}, containing
+      * the bug report.
+      *

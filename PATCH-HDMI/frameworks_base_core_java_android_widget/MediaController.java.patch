@@ -1,0 +1,57 @@
+--- MediaController.java.original	2012-02-24 02:23:37.000000000 +0100
++++ MediaController.java.psquare	2012-03-02 03:40:57.000000000 +0100
+@@ -16,6 +16,10 @@
+ 
+ package android.widget;
+ 
++import java.io.BufferedReader;
++import java.io.File;
++import java.io.FileReader;
++import java.io.IOException;
+ import android.content.Context;
+ import android.graphics.PixelFormat;
+ import android.media.AudioManager;
+@@ -272,6 +276,31 @@
+         }
+     }
+     
++    
++	/** get current mode*/
++	private static final String MODE_PATH = "/sys/class/display/mode";
++    private static String getCurMode() {
++    	String modeStr;
++    	
++        File file = new File(MODE_PATH);
++        if (!file.exists()) {
++			return "panel";
++        }    	
++    	try {
++    		BufferedReader reader = new BufferedReader(new FileReader(MODE_PATH), 32);
++    		try {
++    			modeStr = reader.readLine();  
++    		} finally {
++    			reader.close();
++    		}    		
++    		return (modeStr == null)? "panel" : modeStr;   	
++    		
++    	} catch (IOException e) { 
++    		Log.e("MediaController", "IO Exception when read: " + MODE_PATH, e);
++    		return "panel";
++    	}    	
++    }    
++    
+     /**
+      * Show the controller on screen. It will go away
+      * automatically after 'timeout' milliseconds of inactivity.
+@@ -296,6 +325,11 @@
+             p.height = LayoutParams.WRAP_CONTENT;
+             p.x = 0;
+             p.y = anchorpos[1] + mAnchor.getHeight() - p.height;
++            if (getCurMode().equals("480p")) { //when freescale enabled
++	            p.gravity = Gravity.TOP|Gravity.LEFT;
++	            p.width = 720;
++	            p.y = 370;
++        	} 
+             p.format = PixelFormat.TRANSLUCENT;
+             p.type = WindowManager.LayoutParams.TYPE_APPLICATION_PANEL;
+             p.flags |= WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM;
