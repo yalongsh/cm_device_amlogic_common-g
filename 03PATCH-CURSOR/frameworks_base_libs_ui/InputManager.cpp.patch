@@ -1,0 +1,10 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/libs/ui/InputManager.cpp
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/libs/ui/InputManager.cpp
+@@ -10,6 +10,7 @@
+ #include <cutils/log.h>
+ #include <ui/InputManager.h>
+ #include <ui/InputReader.h>
++#include <ui/InputRemote.h>
+ #include <ui/InputDispatcher.h>
+ 
+ namespace android {

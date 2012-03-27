@@ -1,0 +1,10 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/core/jni/Android.mk
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/core/jni/Android.mk
+@@ -137,6 +137,7 @@
+ 	android_ddm_DdmHandleNativeHeap.cpp \
+ 	com_android_internal_os_ZygoteInit.cpp \
+ 	com_android_internal_graphics_NativeUtils.cpp \
++	com_android_internal_graphics_OSD2Cursor.cpp \
+ 	android_backup_BackupDataInput.cpp \
+ 	android_backup_BackupDataOutput.cpp \
+ 	android_backup_FileBackupHelperBase.cpp \

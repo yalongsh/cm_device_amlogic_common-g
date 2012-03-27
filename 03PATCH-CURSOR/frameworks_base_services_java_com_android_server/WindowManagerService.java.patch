@@ -1,0 +1,221 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/services/java/com/android/server/WindowManagerService.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/services/java/com/android/server/WindowManagerService.java
+@@ -17,9 +17,9 @@
+ 
+ package com.android.server;
+ 
+-//import static android.view.WindowManager.MOUSE_CURSOR_NONE;
+-//import static android.view.WindowManager.MOUSE_CURSOR_SURFACE;
+-//import static android.view.WindowManager.MOUSE_CURSOR_OSD2;
++import static android.view.WindowManager.MOUSE_CURSOR_NONE;
++import static android.view.WindowManager.MOUSE_CURSOR_SURFACE;
++import static android.view.WindowManager.MOUSE_CURSOR_OSD2;
+ import static android.view.WindowManager.LayoutParams.FIRST_APPLICATION_WINDOW;
+ import static android.view.WindowManager.LayoutParams.FIRST_SUB_WINDOW;
+ import static android.view.WindowManager.LayoutParams.FLAG_BLUR_BEHIND;
+@@ -42,7 +42,7 @@
+ import static android.view.WindowManager.LayoutParams.TYPE_WALLPAPER;
+ 
+ import com.android.internal.app.IBatteryStats;
+-//import com.android.internal.graphics.OSD2Cursor;
++import com.android.internal.graphics.OSD2Cursor;
+ import com.android.internal.policy.PolicyManager;
+ import com.android.internal.policy.impl.CmPhoneWindowManager;
+ import com.android.internal.policy.impl.PhoneWindowManager;
+@@ -402,22 +402,22 @@
+     boolean mBlurShown;
+     Watermark mWatermark;
+     ScreenRotationAnimation mScreenRotationAnimation;
+-/*
+-    //private static final int CURSOR_NONE = 0;
+-    //private static final int CURSOR_GLSURFACE = 1;
+-    //private static final int CURSOR_OSD2 = 2;
++
++    private static final int CURSOR_NONE = 0;
++    private static final int CURSOR_GLSURFACE = 1;
++    private static final int CURSOR_OSD2 = 2;
+     private final Object mMouseCursorLock = new Object();
+     private int mMouseCursorType;
+     private Surface mMouseSurface = null;
+     private boolean mMouseCursorShown = false;
+     private int mMlx;
+     private int mMly;
+-    //private int mMlw;
+-    //private int mMlh;
++    private int mMlw;
++    private int mMlh;
+ 
+ 	private final boolean mAutoHideCursor;
+ 	private final int mAutoHideCursorTimeout;
+-*/
++
+     int mTransactionSequence = 0;
+ 
+     final float[] mTmpFloats = new float[9];
+@@ -476,7 +476,7 @@
+     Display mDisplay;
+ 
+     H mH = new H();
+-//	CursorRunable mCursorRunable = new CursorRunable();
++	CursorRunable mCursorRunable = new CursorRunable();
+ 
+     WindowState mCurrentFocus = null;
+     WindowState mLastFocus = null;
+@@ -706,7 +706,7 @@
+         mHoldingScreenWakeLock = pmc.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK,
+                 "KEEP_SCREEN_ON_FLAG");
+         mHoldingScreenWakeLock.setReferenceCounted(false);
+-/*
++
+         String mouseCursorTypeStr = SystemProperties.get("ro.ui.cursor");
+         if ("none".equals(mouseCursorTypeStr))
+             mMouseCursorType = MOUSE_CURSOR_NONE;
+@@ -717,7 +717,7 @@
+ 
+ 		mAutoHideCursor = SystemProperties.getBoolean("ro.ui.cursor.autohide", true);
+ 		mAutoHideCursorTimeout = SystemProperties.getInt("ro.ui.cursor.timeout", 10000);
+-*/
++
+         mInputManager = new InputManager(context, this);
+ 
+         PolicyThread thr = new PolicyThread(mPolicy, this, context, pm);
+@@ -4669,7 +4669,7 @@
+                 }
+             }
+             /*if (mMouseCursorType == CURSOR_OSD2)*/
+-//                OSD2Cursor.setRotation((short)rotation);
++                OSD2Cursor.setRotation((short)rotation);
+             for (int i=mWindows.size()-1; i>=0; i--) {
+                 WindowState w = mWindows.get(i);
+                 if (w.mSurface != null) {
+@@ -5111,7 +5111,7 @@
+      * that to config-changed listeners if appropriate.
+      */
+     void sendNewConfiguration() {
+-//        setMouseCursorVisibility(false);
++        setMouseCursorVisibility(false);
+         try {
+             mActivityManager.updateConfiguration(null);
+         } catch (RemoteException e) {
+@@ -5528,11 +5528,9 @@
+             mInputManager.setInputDispatchMode(mInputDispatchEnabled, mInputDispatchFrozen);
+         }
+ 
+-/*
+         public void handleCursorMotion(int x, int y) {
+             moveMouseCursor(x, y);
+         }
+-*/
+     }
+ 
+     public void pauseKeyDispatching(IBinder _token) {
+@@ -5573,7 +5571,7 @@
+             mInputMonitor.setEventDispatchingLw(enabled);
+         }
+     }
+-/*
++
+     public void moveMouseCursor(int x, int y) {
+         synchronized (mMouseCursorLock) {
+             if (mMlx != x || mMly != y) {
+@@ -5612,7 +5610,8 @@
+                     OSD2Cursor.hide();
+                 mMouseCursorShown = show;
+             }
+-*/
++        }
++    }
+ 
+     /**
+      * Injects a keystroke event into the UI.
+@@ -7997,7 +7996,7 @@
+             icon = _icon;
+         }
+     }
+-/*
++
+ 	private final class CursorRunable implements Runnable{
+ 		public void run() {
+             synchronized (mMouseCursorLock) {
+@@ -8018,7 +8017,7 @@
+ 	    }
+ 	}
+     }
+-*/
++
+     private final class H extends Handler {
+         public static final int REPORT_FOCUS_CHANGE = 2;
+         public static final int REPORT_LOSING_FOCUS = 3;
+@@ -8412,7 +8411,7 @@
+         }
+         return false;
+     }
+-/*
++
+     public int getMouseCursorType() {
+         synchronized (mMouseCursorLock) {
+             return mMouseCursorType;
+@@ -8440,7 +8439,7 @@
+             mMouseCursorType = type;
+             return type;
+         }
+-*/
++    }
+ 
+     // -------------------------------------------------------------
+     // Internals
+@@ -8801,7 +8800,7 @@
+             mFxSession = new SurfaceSession();
+             createWatermark = true;
+         }
+-/*
++
+ 	synchronized(mMouseCursorLock){
+             if (mMouseCursorType == MOUSE_CURSOR_SURFACE) {
+                 if(mMouseSurface == null){
+@@ -8857,7 +8856,6 @@
+                 mMly = dh / 2;
+             }
+ 	}
+-*/
+ 
+ 
+         if (SHOW_TRANSACTIONS) Slog.i(TAG, ">>> OPEN TRANSACTION performLayoutAndPlaceSurfaces");
+@@ -9900,16 +9898,27 @@
+                 mBlurShown = false;
+             }
+ 
+-            // Draw the mouse cursor, if necessary
+-            if (mPointerSurface != null) {
+-                if (mPointerVisible) {
+-                    WindowState top =
+-                        (WindowState)mWindows.get(mWindows.size() - 1);
+-                    mPointerSurface.setPosition(mPointerX, mPointerY);
+-                    mPointerSurface.setLayer(top.mAnimLayer + 1);
+-                    mPointerSurface.show();
+-                } else {
+-                    mPointerSurface.hide();
++	    synchronized (mMouseCursorLock) {
++                // FOURTH LOOP: Display mouse cursor Surface
++                if (mMouseCursorType == MOUSE_CURSOR_SURFACE) {
++                    synchronized (mWindowMap) {
++                        if (mMouseCursorShown) {
++                            WindowState top = (WindowState)mWindows.get(mWindows.size() - 1);
++                            try {
++                                if (DEBUG_INPUT)
++                                    Slog.i(TAG, "Move surf, x: " +
++                                           Integer.toString(mMlx) + " y:"
++                                           + Integer.toString(mMly));
++                                mMouseSurface.show();
++                                mMouseSurface.setPosition(mMlx, mMly);
++                                mMouseSurface.setLayer(top.mAnimLayer + 1);
++                            } catch (RuntimeException e) {
++                                Slog.e(TAG, "Failure showing mouse surface", e);
++                            }
++                        } else {
++                            mMouseSurface.hide();
++                        }
++		    }
+                 }
+             }
+         } catch (RuntimeException e) {

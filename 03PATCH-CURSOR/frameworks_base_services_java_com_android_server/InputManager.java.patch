@@ -1,0 +1,16 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/services/java/com/android/server/InputManager.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/services/java/com/android/server/InputManager.java
+@@ -545,9 +545,9 @@
+             return result;
+         }
+ 
+-//        @SuppressWarnings("unused")
+-//        public void handleCursorMotion(int x, int y) {
+-//            mWindowManagerService.mInputMonitor.handleCursorMotion(x, y);
+-//        }
++        @SuppressWarnings("unused")
++        public void handleCursorMotion(int x, int y) {
++            mWindowManagerService.mInputMonitor.handleCursorMotion(x, y);
++        }
+     }
+ }

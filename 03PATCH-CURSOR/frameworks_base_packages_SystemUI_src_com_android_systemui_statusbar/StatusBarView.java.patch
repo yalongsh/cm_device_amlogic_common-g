@@ -1,0 +1,10 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/StatusBarView.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/packages/SystemUI/src/com/android/systemui/statusbar/StatusBarView.java
+@@ -20,6 +20,7 @@
+ import android.content.Context;
+ import android.content.res.Configuration;
+ import android.graphics.Canvas;
++import android.graphics.drawable.AnimationDrawable;
+ import android.os.SystemClock;
+ import android.util.AttributeSet;
+ import android.view.MotionEvent;

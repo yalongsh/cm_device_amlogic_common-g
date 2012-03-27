@@ -1,0 +1,59 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/libs/ui/InputManager.cpp
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/libs/ui/InputManager.cpp
+@@ -10,6 +10,7 @@
+ #include <cutils/log.h>
+ #include <ui/InputManager.h>
+ #include <ui/InputReader.h>
++#include <ui/InputRemote.h>
+ #include <ui/InputDispatcher.h>
+ 
+ namespace android {
+@@ -20,6 +21,7 @@
+         const sp<InputDispatcherPolicyInterface>& dispatcherPolicy) {
+     mDispatcher = new InputDispatcher(dispatcherPolicy);
+     mReader = new InputReader(eventHub, readerPolicy, mDispatcher);
++    mRemote = new InputRemote(readerPolicy, mDispatcher);
+     initialize();
+ }
+ 
+@@ -28,6 +30,7 @@
+         const sp<InputDispatcherInterface>& dispatcher) :
+         mReader(reader),
+         mDispatcher(dispatcher) {
++    //mRemote = new InputRemote(mReader.getPolicy(), mDispatcher);
+     initialize();
+ }
+ 
+@@ -38,6 +41,7 @@
+ void InputManager::initialize() {
+     mReaderThread = new InputReaderThread(mReader);
+     mDispatcherThread = new InputDispatcherThread(mDispatcher);
++    mRemoteThread = new InputRemoteThread(mRemote);
+ }
+ 
+ status_t InputManager::start() {
+@@ -55,6 +59,12 @@
+         return result;
+     }
+ 
++    result = mRemoteThread->run("InputRemote", PRIORITY_URGENT_DISPLAY);
++    if (result) {
++        LOGE("Could not start InputRemote thread due to error %d.", result);
++        return result;
++    }
++
+     return OK;
+ }
+ 
+@@ -69,6 +79,11 @@
+         LOGW("Could not stop InputDispatcher thread due to error %d.", result);
+     }
+ 
++    result = mRemoteThread->requestExitAndWait();
++    if (result) {
++        LOGW("Could not stop mRemoteThread thread due to error %d.", result);
++    }
++
+     return OK;
+ }
+ 

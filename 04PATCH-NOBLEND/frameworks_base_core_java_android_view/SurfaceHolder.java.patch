@@ -1,0 +1,22 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/core/java/android/view/SurfaceHolder.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/core/java/android/view/SurfaceHolder.java
+@@ -22,6 +22,7 @@
+ import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_HARDWARE;
+ import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_GPU;
+ import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_PUSH_BUFFERS;
++import static android.view.WindowManager.LayoutParams.MEMORY_TYPE_NO_BLEND;
+ 
+ /**
+  * Abstract interface to someone holding a display surface.  Allows you to
+@@ -58,6 +59,11 @@
+     /** Surface type: creates a "push" surface, that is a surface that 
+      * doesn't owns its buffers. With such a surface lockCanvas will fail. */
+     public static final int SURFACE_TYPE_PUSH_BUFFERS = MEMORY_TYPE_PUSH_BUFFERS;
++    /** @hide Surface type: creates a regular surface, usually in main, non
++     * contiguous, cached/buffered RAM. But this surface is no blending with
++     * other surfaces.
++     */
++    public static final int SURFACE_TYPE_NO_BLEND = MEMORY_TYPE_NO_BLEND;
+ 
+     /**
+      * Exception that is thrown from {@link #lockCanvas} when called on a Surface

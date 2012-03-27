@@ -1,0 +1,12 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/core/java/android/text/style/DrawableMarginSpan.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/core/java/android/text/style/DrawableMarginSpan.java
+@@ -50,6 +50,9 @@
+         int dw = mDrawable.getIntrinsicWidth();
+         int dh = mDrawable.getIntrinsicHeight();
+ 
++        if (dir < 0)
++            x -= dw;
++
+         // XXX What to do about Paint?
+         mDrawable.setBounds(ix, itop, ix+dw, itop+dh);
+         mDrawable.draw(c);

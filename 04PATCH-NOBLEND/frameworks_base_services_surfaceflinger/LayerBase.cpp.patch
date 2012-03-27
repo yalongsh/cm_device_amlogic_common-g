@@ -1,0 +1,21 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/services/surfaceflinger/LayerBase.cpp
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/services/surfaceflinger/LayerBase.cpp
+@@ -27,6 +27,8 @@
+ #include <GLES/glext.h>
+ 
+ #include <hardware/hardware.h>
++#include <cutils/properties.h>
++#include <fcntl.h>
+ 
+ #include "clz.h"
+ #include "LayerBase.h"
+@@ -98,6 +100,9 @@
+     uint32_t layerFlags = 0;
+     if (flags & ISurfaceComposer::eHidden)
+         layerFlags = ISurfaceComposer::eLayerHidden;
++
++    if (flags & ISurfaceComposer::eNoBlend)
++        layerFlags |= ISurfaceComposer::eLayerNoBlend;
+ 
+     if (flags & ISurfaceComposer::eNonPremultiplied)
+         mPremultipliedAlpha = false;

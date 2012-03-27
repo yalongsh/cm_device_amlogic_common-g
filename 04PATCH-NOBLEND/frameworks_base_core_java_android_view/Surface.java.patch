@@ -1,0 +1,14 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/core/java/android/view/Surface.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/core/java/android/view/Surface.java
+@@ -87,6 +87,11 @@
+      */
+     public static final int PUSH_BUFFERS        = 0x00000200;
+     
++    /**
++     * @hide Creates a surface with no blending with other surfaces.
++     */
++    public static final int NO_BLEND            = 0x00000400;
++
+     /** Creates a normal surface. This is the default */
+     public static final int FX_SURFACE_NORMAL   = 0x00000000;
+     

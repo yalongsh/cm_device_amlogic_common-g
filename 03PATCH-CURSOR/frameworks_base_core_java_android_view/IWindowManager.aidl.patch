@@ -1,0 +1,29 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/core/java/android/view/IWindowManager.aidl
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/core/java/android/view/IWindowManager.aidl
+@@ -51,6 +51,9 @@
+     IWindowSession openSession(in IInputMethodClient client,
+             in IInputContext inputContext);
+     boolean inputMethodClientHasFocus(IInputMethodClient client);
++
++    // Moves the mouse cursor
++    void moveMouseCursor(int x, int y);
+     
+     // These can only be called when injecting events to your own window,
+     // or by holding the INJECT_EVENTS permission.  These methods may block
+@@ -156,4 +159,16 @@
+      * calls back when it changes.
+      */
+     int watchRotation(IRotationWatcher watcher);
++
++    /**
++     * Get the mouse cursor type.
++     * @return mouse cursor type or -1 for error
++     */
++    int getMouseCursorType();
++
++    /**
++     * Set the mouse cursor type.
++     * @return mouse cursor type
++     */
++    int setMouseCursorType(int type);
+ }

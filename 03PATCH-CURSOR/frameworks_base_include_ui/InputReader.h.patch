@@ -1,0 +1,154 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/include/ui/InputReader.h
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/include/ui/InputReader.h
+@@ -209,10 +209,10 @@
+     virtual InputDispatcherInterface* getDispatcher() = 0;
+     virtual EventHubInterface* getEventHub() = 0;
+ 
+-//	virtual bool isPadmouseOn() = 0;
+-//	virtual bool isPadmouseDoubleClickEnable() = 0;
+-//	virtual int32_t getPadmouseMagicKey() = 0;
+-//	virtual bool isPadmouseDebug() = 0;
++	virtual bool isPadmouseOn() = 0;
++	virtual bool isPadmouseDoubleClickEnable() = 0;
++	virtual int32_t getPadmouseMagicKey() = 0;
++	virtual bool isPadmouseDebug() = 0;
+ };
+ 
+ 
+@@ -292,7 +292,7 @@
+ 
+     // state management for all devices
+     Mutex mStateLock;
+-/*
++
+ 	bool  mPadmouseOn;
+ 	bool  mPadmouseDebug;
+ 	bool  mPadmouseEnable;
+@@ -317,7 +317,7 @@
+ 	virtual bool isPadmouseDebug(){
+ 		return mPadmouseDebug;
+ 	}
+-*/
++		
+     int32_t mGlobalMetaState;
+     virtual void updateGlobalMetaState();
+     virtual int32_t getGlobalMetaState();
+@@ -362,8 +362,8 @@
+     inline int32_t getId() { return mId; }
+     inline const String8& getName() { return mName; }
+     inline uint32_t getSources() { return mSources; }
+-//    inline uint32_t getClasses() { return mClasses; }
+-//    inline void setClasses(uint32_t classes) {  mClasses = classes; }
++    inline uint32_t getClasses() { return mClasses; }
++    inline void setClasses(uint32_t classes) {  mClasses = classes; }
+ 
+     inline bool isIgnored() { return mMappers.isEmpty(); }
+ 
+@@ -396,7 +396,7 @@
+ 
+     String8 mName;
+     uint32_t mSources;
+-//    uint32_t mClasses;
++    uint32_t mClasses;
+ 
+     typedef int32_t (InputMapper::*GetStateFunc)(uint32_t sourceMask, int32_t code);
+     int32_t getState(uint32_t sourceMask, int32_t code, GetStateFunc getStateFunc);
+@@ -491,7 +491,7 @@
+     int32_t mAssociatedDisplayId;
+     uint32_t mSources;
+     int32_t mKeyboardType;
+-//    bool mRotateKeycode;
++    bool mRotateKeycode;
+ 
+     uint32_t mBusType;
+     bool mBluetooth;
+@@ -507,7 +507,7 @@
+ 
+     bool isKeyboardOrGamepadKey(int32_t scanCode);
+ 
+-//    bool isPadmouseLeftKey(int32_t scanCode);
++    bool isPadmouseLeftKey(int32_t scanCode);
+ 
+     void processKey(nsecs_t when, bool down, int32_t keyCode, int32_t scanCode,
+             uint32_t policyFlags);
+@@ -619,7 +619,7 @@
+         int32_t relY;
+         int32_t absX;
+         int32_t absY;
+-//        int32_t wheelVal;
++        int32_t wheelVal;
+ 
+         inline void clear() {
+             fields = 0;
+@@ -819,15 +819,15 @@
+     // Current and previous touch sample data.
+     TouchData mCurrentTouch;
+     TouchData mLastTouch;
+-//    TouchData mPadMouseTouch;
+-
+-//    bool  mDoubleClick;
+-//    bool  mMagicKeyDown;
+-//    bool  mPadmouseDown;
++    TouchData mPadMouseTouch;
++
++    bool  mDoubleClick;
++    bool  mMagicKeyDown;
++    bool  mPadmouseDown;
+ 
+     // The time the primary pointer last went down.
+     nsecs_t mDownTime;
+-/*    // The time the primary pointer last last went down.
++    // The time the primary pointer last last went down.
+     nsecs_t mLastDownTime;
+ 
+     nsecs_t mUpTime;
+@@ -836,25 +836,25 @@
+     int32_t mDoubleTapMaxDurationDn2Up;
+     int32_t mDoubleTapMinDurationUp2Dn;
+     int32_t mDoubleTapMaxDurationUp2Dn;
+-*/
++
+     struct LockedState {
+         Vector<VirtualKey> virtualKeys;
+ 
+         // The surface orientation and width and height set by configureSurfaceLocked().
+         int32_t surfaceOrientation;
+         int32_t surfaceWidth, surfaceHeight;
+-//        int32_t hwrotation;
++        int32_t hwrotation;
+ 
+         // Translation and scaling factors, orientation-independent.
+         int32_t xOrigin;
+         float xScale;
+         float xPrecision;
+-//        int32_t xRange;
++        int32_t xRange;
+ 
+         int32_t yOrigin;
+         float yScale;
+         float yPrecision;
+-//        int32_t yRange;
++        int32_t yRange;
+ 
+         float geometricScale;
+ 
+@@ -915,8 +915,8 @@
+     virtual void parseCalibration();
+     virtual void resolveCalibration();
+     virtual void dumpCalibration(String8& dump);
+-//    virtual bool isPadmouseLeftKey(int32_t scanCode);
+-//    virtual void generateVirtualTouch(nsecs_t when, bool down);
++    virtual bool isPadmouseLeftKey(int32_t scanCode);
++    virtual void generateVirtualTouch(nsecs_t when, bool down);
+ 
+     enum TouchResult {
+         // Dispatch the touch normally.
+@@ -972,7 +972,7 @@
+     void initializeLocked();
+ 
+     TouchResult consumeOffScreenTouches(nsecs_t when, uint32_t policyFlags);
+-//    void computeRelativePosition();
++    void computeRelativePosition();
+     void dispatchTouches(nsecs_t when, uint32_t policyFlags);
+     void dispatchTouch(nsecs_t when, uint32_t policyFlags, TouchData* touch,
+             BitSet32 idBits, uint32_t changedId, uint32_t pointerCount,

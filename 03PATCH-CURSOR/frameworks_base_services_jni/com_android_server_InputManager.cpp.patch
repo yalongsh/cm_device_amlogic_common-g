@@ -1,0 +1,46 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/services/jni/com_android_server_InputManager.cpp
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/services/jni/com_android_server_InputManager.cpp
+@@ -61,7 +61,7 @@
+     jmethodID getInputDeviceCalibration;
+     jmethodID getExcludedDeviceNames;
+     jmethodID getMaxEventsPerSecond;
+-//    jmethodID handleCursorMotion;
++    jmethodID handleCursorMotion;
+ } gCallbacksClassInfo;
+ 
+ static struct {
+@@ -216,7 +216,7 @@
+     virtual void pokeUserActivity(nsecs_t eventTime, int32_t eventType);
+     virtual bool checkInjectEventsPermissionNonReentrant(
+             int32_t injectorPid, int32_t injectorUid);
+-//    virtual void handleCursorMotion(int32_t x, int32_t y);
++    virtual void handleCursorMotion(int32_t x, int32_t y);
+ 
+ private:
+     class ApplicationToken : public InputApplicationHandle {
+@@ -1006,10 +1006,10 @@
+     return result;
+ }
+ 
+-//void NativeInputManager::handleCursorMotion(int32_t x, int32_t y) {
+-//    JNIEnv* env = jniEnv();
+-//    env->CallVoidMethod(mCallbacksObj, gCallbacksClassInfo.handleCursorMotion, x, y);
+-//}
++void NativeInputManager::handleCursorMotion(int32_t x, int32_t y) {
++    JNIEnv* env = jniEnv();
++    env->CallVoidMethod(mCallbacksObj, gCallbacksClassInfo.handleCursorMotion, x, y);
++}
+ 
+ // ----------------------------------------------------------------------------
+ 
+@@ -1435,8 +1435,8 @@
+     GET_METHOD_ID(gCallbacksClassInfo.getMaxEventsPerSecond, gCallbacksClassInfo.clazz,
+             "getMaxEventsPerSecond", "()I");
+ 
+-//    GET_METHOD_ID(gCallbacksClassInfo.handleCursorMotion, gCallbacksClassInfo.clazz,
+-//            "handleCursorMotion", "(II)V");
++    GET_METHOD_ID(gCallbacksClassInfo.handleCursorMotion, gCallbacksClassInfo.clazz,
++            "handleCursorMotion", "(II)V");
+ 
+     // VirtualKeyDefinition
+ 

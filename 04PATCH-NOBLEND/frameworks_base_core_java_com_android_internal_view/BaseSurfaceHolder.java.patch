@@ -1,0 +1,10 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/core/java/com/android/internal/view/BaseSurfaceHolder.java
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/core/java/com/android/internal/view/BaseSurfaceHolder.java
+@@ -144,6 +144,7 @@
+         switch (type) {
+         case SURFACE_TYPE_NORMAL:
+         case SURFACE_TYPE_PUSH_BUFFERS:
++        case SURFACE_TYPE_NO_BLEND:
+             if (mRequestedType != type) {
+                 mRequestedType = type;
+                 onUpdateSurface();

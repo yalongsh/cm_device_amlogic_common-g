@@ -1,0 +1,25 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/libs/ui/tests/InputReader_test.cpp
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/libs/ui/tests/InputReader_test.cpp
+@@ -640,6 +640,22 @@
+         return mDispatcher.get();
+     }
+ 
++    virtual bool isPadmouseOn() {
++        return 0;
++    }
++
++    virtual bool isPadmouseDoubleClickEnable() {
++        return 0;
++    }
++
++    virtual int32_t getPadmouseMagicKey() {
++        return -1;
++    }
++
++	virtual bool isPadmouseDebug(){
++		return 0;
++	}
++
+     virtual void disableVirtualKeysUntil(nsecs_t time) {
+     }
+ 

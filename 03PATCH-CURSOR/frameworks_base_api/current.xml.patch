@@ -1,0 +1,73 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/api/current.xml
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/api/current.xml
+@@ -194872,6 +194872,17 @@
+  visibility="public"
+ >
+ </method>
++<method name="getMouseCursorType"
++ return="int"
++ abstract="true"
++ native="false"
++ synchronized="false"
++ static="false"
++ final="false"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</method>
+ <method name="removeViewImmediate"
+  return="void"
+  abstract="true"
+@@ -194885,6 +194896,52 @@
+ <parameter name="view" type="android.view.View">
+ </parameter>
+ </method>
++<method name="setMouseCursorType"
++ return="int"
++ abstract="true"
++ native="false"
++ synchronized="false"
++ static="false"
++ final="false"
++ deprecated="not deprecated"
++ visibility="public"
++>
++<parameter name="type" type="int">
++</parameter>
++</method>
++<field name="MOUSE_CURSOR_NONE"
++ type="int"
++ transient="false"
++ volatile="false"
++ value="0"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</field>
++<field name="MOUSE_CURSOR_OSD2"
++ type="int"
++ transient="false"
++ volatile="false"
++ value="2"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</field>
++<field name="MOUSE_CURSOR_SURFACE"
++ type="int"
++ transient="false"
++ volatile="false"
++ value="1"
++ static="true"
++ final="true"
++ deprecated="not deprecated"
++ visibility="public"
++>
++</field>
+ </interface>
+ <class name="WindowManager.BadTokenException"
+  extends="java.lang.RuntimeException"
