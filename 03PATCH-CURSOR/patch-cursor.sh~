@@ -68,8 +68,8 @@ patch -N $ROOTDIR/frameworks/base/libs/ui/InputDispatcher.cpp < $ROOTDIR/framewo
 #patch -N $ROOTDIR/frameworks/base/libs/ui/InputManager.cpp < $ROOTDIR/frameworks/base/libs/ui/InputManager.cpp.patch
 
 #cp $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp.original
-#cp $PATCHDIR/frameworks_base_libs_ui/InputReader.cpp.patch1 $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp.patch1
-#patch -N $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp < $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp.patch1
+#cp $PATCHDIR/frameworks_base_libs_ui/InputReader.cpp.patch $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp.patch
+#patch -N $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp < $ROOTDIR/frameworks/base/libs/ui/InputReader.cpp.patch
 
 cp $ROOTDIR/frameworks/base/libs/ui/tests/InputReader_test.cpp $ROOTDIR/frameworks/base/libs/ui/tests/InputReader_test.cpp.original
 cp $PATCHDIR/frameworks_base_libs_ui_tests/InputReader_test.cpp.patch $ROOTDIR/frameworks/base/libs/ui/tests/InputReader_test.cpp.patch
