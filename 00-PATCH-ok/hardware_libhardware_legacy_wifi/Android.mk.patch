@@ -1,0 +1,11 @@
+--- CYANOGENMOD7/hardware/libhardware_legacy/wifi/Android.mk.original
++++ CYANOGENMOD7/hardware/libhardware_legacy/wifi/Android.mk
+@@ -1,5 +1,8 @@
+ # Copyright 2006 The Android Open Source Project
+ 
++ifeq ($(WIFI_USE_BUILTIN_MODULE), true)
++LOCAL_CFLAGS += -DDISABLE_INSMOD_RMMOD
++endif
+ ifdef WIFI_DRIVER_MODULE_PATH
+ LOCAL_CFLAGS += -DWIFI_DRIVER_MODULE_PATH=\"$(WIFI_DRIVER_MODULE_PATH)\"
+ endif

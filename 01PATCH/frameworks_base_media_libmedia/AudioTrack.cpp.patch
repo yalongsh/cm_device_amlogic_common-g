@@ -1,6 +1,6 @@
---- AudioTrack.cpp.original	2012-02-09 22:22:06.000000000 +0100
-+++ AudioTrack.cpp.psquare	2012-02-09 15:27:37.000000000 +0100
-@@ -289,6 +289,23 @@
+--- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/media/libmedia/AudioTrack.cpp
++++ /psquare/developer/ANDROID/CYANOGENMOD/frameworks/base/media/libmedia/AudioTrack.cpp
+@@ -325,6 +325,23 @@
  
  uint32_t AudioTrack::latency() const
  {
@@ -24,3 +24,31 @@
      return mLatency;
  }
  
+@@ -1092,6 +1109,8 @@
+         mCbf(EVENT_MORE_DATA, mUserData, &audioBuffer);
+         writtenSize = audioBuffer.size;
+ 
++        LOGV("writtenSize1 %d", writtenSize);
++
+         // Sanity check on returned size
+         if (ssize_t(writtenSize) <= 0) {
+             // The callback is done filling buffers
+@@ -1102,6 +1121,8 @@
+             break;
+         }
+         if (writtenSize > reqSize) writtenSize = reqSize;
++
++        LOGV("writtenSize2 %d", writtenSize);
+ 
+         if (mFormat == AudioSystem::PCM_8_BIT && !(mFlags & AudioSystem::OUTPUT_FLAG_DIRECT)) {
+             // 8 to 16 bit conversion
+@@ -1190,6 +1211,9 @@
+     uint32_t u = this->user;
+ 
+     u += frameCount;
++
++    LOGV("stepUser +%d = %d\n", frameCount, u);
++
+     // Ensure that user is never ahead of server for AudioRecord
+     if (flags & CBLK_DIRECTION_MSK) {
+         // If stepServer() has been called once, switch to normal obtainBuffer() timeout period

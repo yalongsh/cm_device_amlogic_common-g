@@ -1,0 +1,35 @@
+--- CYANOGENMOD7/hardware/libhardware_legacy/wifi/wifi.c.original
++++ CYANOGENMOD7/hardware/libhardware_legacy/wifi/wifi.c
+@@ -222,6 +222,9 @@
+ 
+ static int insmod(const char *filename, const char *args)
+ {
++#ifdef DISABLE_INSMOD_RMMOD
++	return 0;
++#else
+     void *module;
+     unsigned int size;
+     int ret;
+@@ -240,10 +243,14 @@
+     free(module);
+ 
+     return ret;
++#endif
+ }
+ 
+ static int rmmod(const char *modname)
+ {
++#ifdef DISABLE_INSMOD_RMMOD
++	return 0;
++#else
+     int ret = -1;
+     int maxtry = 10;
+ 
+@@ -264,6 +271,7 @@
+         LOGD("Unable to unload driver module \"%s\": %s\n",
+              modname, strerror(errno));
+     return ret;
++#endif
+ }
+ 
+ int do_dhcp_request(int *ipaddr, int *gateway, int *mask,

@@ -1,0 +1,10 @@
+#
+# Ignores
+#
+*~
+
+#
+# Never ignore these
+#
+!.gitignore
+
