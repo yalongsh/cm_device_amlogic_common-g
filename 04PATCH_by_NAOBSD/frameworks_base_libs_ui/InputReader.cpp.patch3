@@ -1,5 +1,5 @@
---- /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/libs/ui/InputReader.cpp.original
-+++ /psquare/developer/ANDROID/CYANOGENMOD7/frameworks/base/libs/ui/InputReader.cpp
+--- frameworks/base/libs/ui/InputReader.cpp.original
++++ frameworks/base/libs/ui/InputReader.cpp
 @@ -26,6 +26,7 @@
  #define DEBUG_MOUSE_EVENTS 0
  
@@ -20,7 +20,7 @@
  
  namespace android {
  
-@@ -1831,6 +1837,42 @@
+@@ -1737,6 +1746,42 @@
      const InputDeviceCalibration& in = getDevice()->getCalibration();
      Calibration& out = mCalibration;
  
@@ -63,7 +63,7 @@
      // Touch Size
      out.touchSizeCalibration = Calibration::TOUCH_SIZE_CALIBRATION_DEFAULT;
      String8 touchSizeCalibrationString;
-@@ -2345,7 +2387,8 @@
+@@ -2222,7 +2267,8 @@
                              goto DispatchVirtualKey;
                          }
                      }
@@ -73,8 +73,8 @@
                  }
              }
              return DISPATCH_TOUCH;
-@@ -2550,9 +2593,35 @@
- 			 
+@@ -2376,9 +2422,35 @@
+ 
              const PointerData& in = touch->pointers[inIndex];
  
 +            // XXX hack for Haipad M701/M1001

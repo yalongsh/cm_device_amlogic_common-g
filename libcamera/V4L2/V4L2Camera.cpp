@@ -762,7 +762,7 @@ extern CameraInterface* HAL_GetCameraInterface(int Id)
 	if(Id == 0)
 		return new V4L2Camera("/dev/video0",0);
 	else
-		return new V4L2Camera("/dev/video0",1);
+		return new V4L2Camera("/dev/video1",1);
 }
 
 };

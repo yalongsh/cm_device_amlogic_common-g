@@ -21,3 +21,8 @@ cd ../
 cd 03*/
 ./patch3.sh
 cd ../
+
+cd 04*/
+./patch4.sh
+cd ../
+
