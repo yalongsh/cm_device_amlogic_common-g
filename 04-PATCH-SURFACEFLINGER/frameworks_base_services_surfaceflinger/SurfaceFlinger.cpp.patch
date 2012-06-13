@@ -1,0 +1,21 @@
+--- CYANOGENMOD7/frameworks/base/services/surfaceflinger/SurfaceFlinger.cpp.original
++++ CYANOGENMOD7/frameworks/base/services/surfaceflinger/SurfaceFlinger.cpp
+@@ -441,6 +441,8 @@
+ 
+         logger.log(GraphicLog::SF_REPAINT_DONE, index);
+     } else {
++        // pretend we did the post
++        hw.compositionComplete();
+         usleep(16667); // 60 fps period
+     }
+     return true;
+@@ -2506,6 +2508,9 @@
+     if (UNLIKELY(uint32_t(dpy) >= DISPLAY_COUNT))
+         return BAD_VALUE;
+ 
++    if (!GLExtensions::getInstance().haveFramebufferObject())
++        return INVALID_OPERATION;
++
+     class MessageCaptureScreen : public MessageBase {
+         SurfaceFlinger* flinger;
+         DisplayID dpy;

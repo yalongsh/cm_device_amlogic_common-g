@@ -1,0 +1,11 @@
+--- CYANOGENMOD7/frameworks/base/services/surfaceflinger/DisplayHardware/DisplayHardware.cpp.original
++++ CYANOGENMOD7/frameworks/base/services/surfaceflinger/DisplayHardware/DisplayHardware.cpp
+@@ -334,7 +334,7 @@
+     eglSwapBuffers(dpy, surface);
+     // glFinish here prevents the impedence mismatch between software-rendered
+     // surfaceflinger surfaces in another thread. Shows no perf loss with vsync on.
+-    glFinish();
++    //glFinish();
+     checkEGLErrors("eglSwapBuffers");
+ 
+     // for debugging

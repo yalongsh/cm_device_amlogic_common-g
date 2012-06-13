@@ -1,0 +1,10 @@
+--- CYANOGENMOD7/frameworks/base/services/surfaceflinger/LayerBlur.cpp.original
++++ CYANOGENMOD7/frameworks/base/services/surfaceflinger/LayerBlur.cpp
+@@ -260,6 +260,7 @@
+             }
+         }
+ #endif
++        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+         glLoadIdentity();
+         glMatrixMode(GL_MODELVIEW);
+     }

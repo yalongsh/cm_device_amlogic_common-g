@@ -43,7 +43,7 @@ if [ ! -f busybox+fbset.tar ]
 	then
 	rm -R busybox
 	echo 'clone busybox with fbset from git://github.com/psquare/android_external_busybox.git'
-	git clone git://github.com/psquare/android_external_busybox.git -b gingerbread-psquare busybox
+	git clone git://github.com/psquare/android_external_busybox.git -b gb-release-7.2-psquare busybox
 else
 	rm -R busybox
 	tar -xf busybox+fbset.tar busybox

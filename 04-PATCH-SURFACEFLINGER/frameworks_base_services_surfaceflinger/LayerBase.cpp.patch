@@ -1,0 +1,30 @@
+--- CYANOGENMOD7/frameworks/base/services/surfaceflinger/LayerBase.cpp.original
++++ CYANOGENMOD7/frameworks/base/services/surfaceflinger/LayerBase.cpp
+@@ -27,6 +27,8 @@
+ #include <GLES/glext.h>
+ 
+ #include <hardware/hardware.h>
++#include <cutils/properties.h>
++#include <fcntl.h>
+ 
+ #include "clz.h"
+ #include "LayerBase.h"
+@@ -373,7 +375,9 @@
+ {
+     const DisplayHardware& hw(graphicPlane(0).displayHardware());
+     const uint32_t fbHeight = hw.getHeight();
++    const uint32_t fbWidth = hw.getWidth();
+     const State& s(drawingState());
++    bool blendFlag = needsBlending();
+     
+     // bind our texture
+     TextureManager::activateTexture(texture, needsFiltering());
+@@ -402,7 +406,7 @@
+     } else if (noEffect) {
+         glColor4f(1, 1, 1, 1);
+         glTexEnvx(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+-        if (needsBlending()) {
++        if (blendFlag) {
+             glEnable(GL_BLEND);
+             glBlendFunc(src, GL_ONE_MINUS_SRC_ALPHA);
+         } else {
